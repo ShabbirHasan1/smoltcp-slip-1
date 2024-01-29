@@ -9,6 +9,6 @@ extern crate alloc;
 
 mod phy;
 
-pub use embedded_hal;
+pub use embedded_hal_nb;
 pub use phy::SlipDevice;
 pub use smoltcp;

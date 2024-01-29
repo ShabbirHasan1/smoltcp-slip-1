@@ -1,23 +1,23 @@
 [package]
 name = "smoltcp-slip"
-version = "0.3.2"
-authors = ["Romain Déoux <romain.deoux@gmail.com>"]
+version = "0.4.0"
+authors = ["Romain Déoux <romain.deoux@proton.me>"]
 edition = "2021"
 description = "SLIP network interface on top of smoltcp"
 readme = "README.md"
-repository = "https://github.com/quarthex/smoltcp-slip.git"
+repository = "https://codeberg.org/koneko/smoltcp-slip.git"
 license = "MIT"
 keywords = ["slip", "smoltcp"]
 categories = ["embedded", "network-programming", "no-std"]
 
 [dependencies]
-embedded-hal = "0.2.7"
+embedded-hal-nb = "1.0.0"
 log = "0.4.20"
 nb = "1.1.0"
 serial-line-ip = "0.5.0"
-smoltcp = "0.10.0"
+smoltcp = "0.11.0"
 
 [dev-dependencies]
-embedded-hal-mock = "0.9.0"
-linux-embedded-hal = "0.3.2"
-simple_logger = "4.2.0"
+embedded-hal-mock = "0.10.0"
+linux-embedded-hal = "0.4.0"
+simple_logger = "4.3.3"

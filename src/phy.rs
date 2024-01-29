@@ -2,7 +2,7 @@ use alloc::collections::VecDeque;
 use alloc::vec;
 use alloc::vec::Vec;
 use core::mem::take;
-use embedded_hal::serial::{Read, Write};
+use embedded_hal_nb::serial::{Read, Write};
 use log::error;
 use serial_line_ip::{Decoder, Encoder};
 use smoltcp::phy::{Device, DeviceCapabilities, Medium, RxToken, TxToken};
@@ -191,7 +191,7 @@ mod tests {
     use crate::phy::encode;
     use alloc::vec;
     use alloc::vec::Vec;
-    use embedded_hal_mock::serial::{Mock, Transaction};
+    use embedded_hal_mock::eh1::serial::{Mock, Transaction};
     use log::info;
     use simple_logger::SimpleLogger;
     use smoltcp::iface::{Config, Interface, SocketSet};
@@ -310,7 +310,7 @@ mod tests {
             // Check transmitted SLIP frame
             let ip_buf = ip_packet.into_inner();
             let slip_buf = encode(&ip_buf);
-            device.as_mut().expect(&[
+            device.as_mut().update_expectations(&[
                 Transaction::read_error(nb::Error::WouldBlock),
                 Transaction::write_many(slip_buf),
                 Transaction::read_error(nb::Error::WouldBlock),
@@ -345,7 +345,7 @@ mod tests {
             icmp_repr.emit(&mut imcp_packet, &caps);
 
             let slip_buf = encode(&buf);
-            device.as_mut().expect(&[
+            device.as_mut().update_expectations(&[
                 Transaction::read_many(slip_buf),
                 Transaction::read_error(nb::Error::WouldBlock),
                 Transaction::read_error(nb::Error::WouldBlock),

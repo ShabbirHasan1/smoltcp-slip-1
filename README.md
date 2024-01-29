@@ -12,7 +12,8 @@ use smoltcp::wire::{HardwareAddress, Ipv4Address, Ipv4Cidr};
 use smoltcp_slip::SlipDevice;
 
 // open a serial device
-let device = Serial::open("/dev/ttyS0").expect("open serial port");
+let device = Serial::open("/dev/ttyS0".to_string(), 9600)
+    .expect("open serial port");
 
 // create a SLIP device from this I/O device
 let mut device = SlipDevice::from(device);
